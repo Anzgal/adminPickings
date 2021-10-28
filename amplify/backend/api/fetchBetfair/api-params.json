@@ -1,0 +1,55 @@
+{
+  "paths": [
+    {
+      "name": "/events",
+      "lambdaFunction": "fetchBetfair",
+      "privacy": {
+        "userPoolGroups": {
+          "Tipster": [
+            "/POST",
+            "/GET"
+          ]
+        }
+      },
+      "policyResourceName": "/events"
+    }
+  ],
+  "resourceName": "fetchBetfair",
+  "apiName": "fetchBetfair",
+  "authResourceName": "pickings36383ddc36383ddc",
+  "functionArns": [
+    {
+      "lambdaFunction": "fetchBetfair"
+    }
+  ],
+  "privacy": {
+    "auth": 0,
+    "unauth": 0,
+    "authRoleName": "amplify-pickings-dev-152313-authRole",
+    "unAuthRoleName": "amplify-pickings-dev-152313-unauthRole"
+  },
+  "dependsOn": [
+    {
+      "category": "function",
+      "resourceName": "fetchBetfair",
+      "attributes": [
+        "Name",
+        "Arn"
+      ]
+    },
+    {
+      "category": "auth",
+      "resourceName": "pickings36383ddc36383ddc",
+      "attributes": [
+        "UserPoolId"
+      ]
+    },
+    {
+      "category": "auth",
+      "resourceName": "userPoolGroups",
+      "attributes": [
+        "TipsterGroupRole"
+      ]
+    }
+  ]
+}

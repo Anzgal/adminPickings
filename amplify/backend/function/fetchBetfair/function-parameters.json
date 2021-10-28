@@ -1,0 +1,17 @@
+{
+  "lambdaLayers": [],
+  "environmentVariableList": [
+    {
+      "cloudFormationParameterName": "applicationKey",
+      "environmentVariableName": "applicationKey"
+    },
+    {
+      "cloudFormationParameterName": "username",
+      "environmentVariableName": "username"
+    },
+    {
+      "cloudFormationParameterName": "password",
+      "environmentVariableName": "password"
+    }
+  ]
+}

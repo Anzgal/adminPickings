@@ -1,0 +1,110 @@
+enum RESULTSTATUS {
+  GANADA
+  PERDIDA
+  PUSH
+  ABIERTA
+}
+
+type Task
+  @model
+  @auth(
+    rules: [
+      { allow: groups, groups: ["Managers"], queries: null, mutations: [create, update, delete] }
+      { allow: groups, groups: ["Employees"], queries: [get, list], mutations: null }
+    ]
+  ) {
+  id: ID!
+  title: String!
+  description: String
+  status: String
+}
+type PrivateNote @model @auth(rules: [{ allow: owner }]) {
+  id: ID!
+  content: String!
+}
+
+
+type Sports @model {
+  id: ID!
+  title: String!
+  createdAt: String
+}
+
+type Leagues @model {
+  id: ID!
+  title: String!
+  sport: String!
+  createdAt: String 
+}
+
+
+
+# type Market @model @searchable {
+#   id: ID!
+#   name: String!
+#   products: [Pick] @connection(name: "MarketPicks", sortField: "createdAt")
+#   tags: [String]
+#   owner: String!
+#   createdAt: AWSDateTime
+# }
+
+type Pick @model @auth(rules: [{ allow: owner, queries: [get, list], mutations: [create] }]) {
+      
+
+  id: ID!
+  deporte: String
+  liga: String
+  evento: String
+  mercado: String
+  mercadoBook: String
+  esFreePick: Boolean
+  description: String
+  unidades: String
+  result: RESULTSTATUS
+  # market: Market @connection(name: "MarketPicks")
+  # file: S3Object!
+  # price: Float!
+  # shipped: Boolean!
+  owner: String
+  createdAt: AWSDateTime
+}
+
+type S3Object {
+  bucket: String!
+  region: String!
+  key: String!
+}
+
+type User 
+@model(
+  queries: {get: "getUser"},
+  mutations: {create: "registerUser", update: "updateuser"},
+  subscriptions: null
+) {
+  id: ID!
+  username: String!
+  email: String!
+  registered: Boolean
+  orders: [Order] @connection(name: "UserOrders", sortField: "createdAt")
+}
+
+type Order 
+@model(
+  queries: null,
+  mutations: {create: "createOrder"},
+  subscriptions: null
+) {
+  id: ID!
+  pick: Pick @connection
+  user: User @connection(name: "UserOrders")
+  shippingAddress: ShippingAddress
+  createdAt: AWSDateTime
+}
+
+type ShippingAddress {
+  city: String!
+  country: String!
+  address_line1: String!
+  address_state: String!
+  address_zip: String!
+}

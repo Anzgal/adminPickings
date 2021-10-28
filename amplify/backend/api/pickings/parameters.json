@@ -1,0 +1,11 @@
+{
+  "AppSyncApiName": "pickings",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authpickings36383ddc36383ddc",
+      "Outputs.UserPoolId"
+    ]
+  }
+}
