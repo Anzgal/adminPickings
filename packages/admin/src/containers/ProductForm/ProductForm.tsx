@@ -92,7 +92,7 @@ const AddProduct: React.FC<Props> = (props) => {
     dispatch,
   ]);
 
-  const { register, handleSubmit, setValue } = useForm({defaultValues: {"esFreePick": false}});
+  const { register, handleSubmit, setValue } = useForm({defaultValues: {"esFreePick": false, "deporte": "", "liga": "", "evento": "", "mercado": "", "mercadoBook": "", "description": ""}});
 
   const [deporte, setDeporte] = useState([]);
   const [liga, setLiga] = useState([]);
